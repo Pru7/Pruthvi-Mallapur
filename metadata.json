@@ -1,0 +1,6 @@
+{
+  "name": "MMT Trip Assistant",
+  "description": "A conversational AI trip planner for Indian travellers on MakeMyTrip, offering bias-free personalized itineraries within budget.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

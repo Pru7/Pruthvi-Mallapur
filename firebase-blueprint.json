@@ -1,0 +1,52 @@
+{
+  "entities": {
+    "Trip": {
+      "title": "Trip",
+      "description": "A saved travel itinerary and preferences belonging to an authenticated user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "destinationId": { "type": "string", "maxLength": 128 },
+        "destinationName": { "type": "string", "maxLength": 128 },
+        "startDate": { "type": "string", "maxLength": 32 },
+        "endDate": { "type": "string", "maxLength": 32 },
+        "budgetINR": { "type": "number" },
+        "travellerType": { "type": "string", "maxLength": 32 },
+        "travellerCount": { "type": "number" },
+        "preferencesText": { "type": "string", "maxLength": 2000 },
+        "whyThisItinerary": { "type": "string", "maxLength": 1000 },
+        "totalCostINR": { "type": "number" },
+        "days": { "type": "array" },
+        "savedItemIds": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "budgetINR", "travellerType", "travellerCount", "totalCostINR", "createdAt"]
+    },
+    "Draft": {
+      "title": "Draft",
+      "description": "User in-progress trip planning answers and conversation state",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "step": { "type": "string", "maxLength": 64 },
+        "formData": { "type": "object" },
+        "chatHistory": { "type": "array" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/trips/{tripId}": {
+      "schema": { "$ref": "#/entities/Trip" },
+      "description": "Saved itineraries for a specific user"
+    },
+    "/users/{userId}/drafts/{draftId}": {
+      "schema": { "$ref": "#/entities/Draft" },
+      "description": "In-progress planning drafts for a specific user"
+    }
+  }
+}
